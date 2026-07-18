@@ -64,7 +64,7 @@ const Letter = () => {
       className="bg-[#2C0000] min-h-screen w-full flex flex-col justify-between relative overflow-hidden select-none py-8 sm:py-12 md:py-12"
     >
       {/* Reusable SectionHeader */}
-      <SectionHeader leftText="Mari & Pedro" rightText="18/07/2023" />
+      <SectionHeader leftText="Mari & Pedro" rightText="18/07/2026" />
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col items-center justify-center w-full px-6 sm:px-12 md:px-20 my-12 sm:my-16 max-w-7xl mx-auto">
@@ -84,7 +84,7 @@ const Letter = () => {
             className="w-full lg:w-1/2 text-left space-y-6 sm:space-y-8 max-w-2xl px-2"
           >
             <p className="font-parisienne text-2xl sm:text-3xl md:text-4xl text-white/95 leading-relaxed sm:leading-relaxed drop-shadow-sm">
-              Te amo desde 18/07/2023. Cada dia ao seu lado é um presente que Deus me deu, construindo memórias que levarei para sempre no coração.
+              Cada dia ao seu lado é um presente que Deus me deu, construindo memórias que levarei para sempre no meu coração.
             </p>
             <p className="font-parisienne text-2xl sm:text-3xl md:text-4xl text-white/95 leading-relaxed sm:leading-relaxed drop-shadow-sm">
               O seu sorriso ilumina qualquer momento e a sua presença transforma o comum em extraordinário. Você é o meu porto seguro e a minha maior alegria.

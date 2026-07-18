@@ -11,18 +11,23 @@ gsap.registerPlugin(ScrollTrigger);
 const galleryImages = [
   {
     id: 1,
-    src: "/image-hero-flowers-girassois.png",
+    src: "/image-gallery-1.png",
     alt: "Nossos Momentos — Foto 1",
   },
   {
     id: 2,
-    src: "/image-hero-flowers-girassois.png",
+    src: "/image-gallery-2.png",
     alt: "Nossos Momentos — Foto 2",
   },
   {
     id: 3,
-    src: "/image-hero-flowers-girassois.png",
+    src: "/image-gallery-3.png",
     alt: "Nossos Momentos — Foto 3",
+  },
+  {
+    id: 4,
+    src: "/image-gallery-4.png",
+    alt: "Nossos Momentos — Foto 4",
   },
 ];
 
@@ -99,7 +104,7 @@ const Gallery = () => {
       className="bg-[#2C0000] min-h-screen w-full flex flex-col justify-between relative overflow-hidden select-none py-8 sm:py-12 md:py-16"
     >
       {/* Reusable SectionHeader */}
-      <SectionHeader leftText="18/07/2025" rightText="Mari & Pedro" />
+      <SectionHeader leftText="18/07/2023" rightText="Mari & Pedro" />
 
       {/* Center Title and Description */}
       <div
@@ -126,7 +131,7 @@ const Gallery = () => {
               <img
                 src={item.src}
                 alt={item.alt}
-                className="gallery-img w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                className="gallery-img w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-100"
                 onError={(e) => {
                   e.currentTarget.style.display = "none";
                 }}
