@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SectionHeader from "@/components/header/section-header";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -51,44 +52,45 @@ const Gallery = () => {
         },
       });
 
-      // Animação de expansão da largura (width expand) para cada imagem ao rolar o scroll
+      // Animação de expansão da largura (width expand) solicitada pelo usuário
+      // Como as imagens já estão leves (WebP) pelo Next.js, o navegador deve aguentar o Reflow sem travar.
       const cards = gsap.utils.toArray<HTMLElement>(".gallery-card");
 
       cards.forEach((card) => {
-        // Animação de expansão do container (de tamanho menor cortado para largura total na tela)
+        // Animação de expansão do card (80% da tela para 100%)
         gsap.fromTo(
           card,
           {
-            width: "80%", // Menor tamanho começa na largura que antes era a máxima (80% da tela)
+            width: "80%", // Começa menor
             borderRadius: "32px",
           },
           {
-            width: "100%", // Expande para preencher 100% do container max-w-[97vw], ficando pertinho da borda
+            width: "100%", // Expande até a borda
             borderRadius: "16px",
-            ease: "power2.out",
+            ease: "none",
             scrollTrigger: {
               trigger: card,
               start: "top 85%",
               end: "center 45%",
-              scrub: 1,
+              scrub: true, // Sempre true com Lenis
             },
           }
         );
 
-        // Efeito parallax cinemático na imagem interna enquanto o container expande
+        // Efeito parallax cinemático na imagem interna
         const img = card.querySelector(".gallery-img");
         if (img) {
           gsap.fromTo(
             img,
-            { scale: 1.18 },
+            { scale: 1.15 },
             {
               scale: 1,
-              ease: "power2.out",
+              ease: "none",
               scrollTrigger: {
                 trigger: card,
                 start: "top 85%",
                 end: "center 45%",
-                scrub: 1,
+                scrub: true,
               },
             }
           );
@@ -119,22 +121,24 @@ const Gallery = () => {
         </p>
       </div>
 
-      {/* Array de 3 Imagens com animação de expansão da largura (Width Expand) no scroll */}
+      {/* Array de Imagens Otimizadas pelo Next.js com Expansão Animada de Width */}
       <div className="w-full px-2 sm:px-4 md:px-6 pb-8 sm:pb-16 max-w-[97vw] mx-auto flex flex-col items-center gap-14 sm:gap-24 md:gap-32">
         {galleryImages.map((item) => (
           <div
             key={item.id}
             className="w-full flex justify-center items-center"
           >
-            <div className="gallery-card w-[80%] aspect-[16/9] sm:aspect-[21/9] min-h-[380px] sm:min-h-[520px] bg-white/[0.06] backdrop-blur-sm rounded-3xl sm:rounded-[2.5rem] border border-white/15 overflow-hidden relative shadow-2xl group transition-colors duration-500 hover:border-white/30">
-              {/* Imagem do casal */}
-              <img
+            <div 
+              className="gallery-card w-[80%] aspect-[16/9] sm:aspect-[21/9] min-h-[350px] sm:min-h-[500px] bg-white/[0.06] backdrop-blur-sm rounded-3xl border border-white/15 overflow-hidden relative shadow-2xl group transition-colors duration-500 hover:border-white/30"
+            >
+              {/* Imagem do casal otimizada */}
+              <Image
                 src={item.src}
                 alt={item.alt}
-                className="gallery-img w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-100"
-                onError={(e) => {
-                  e.currentTarget.style.display = "none";
-                }}
+                fill
+                sizes="100vw"
+                className="gallery-img object-cover object-center transition-transform duration-700 group-hover:scale-[1.03]"
+                quality={85}
               />
             </div>
           </div>

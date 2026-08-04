@@ -1,11 +1,14 @@
+import dynamic from "next/dynamic";
 import Preloader from "@/components/preloader/preloader";
 import Hero from "@/components/hero/hero";
 import Message from "@/components/message/message";
-import Gallery from "@/components/gallery/gallery";
-import Counter from "@/components/counter/counter";
-import Letter from "@/components/letter/letter";
-import Words3D from "@/components/words-3d/words-3d";
-import Footer from "@/components/footer/footer";
+
+// Componentes "Abaixo da Dobra" carregados dinamicamente para melhorar o TBT (Total Blocking Time)
+const Gallery = dynamic(() => import("@/components/gallery/gallery"));
+const Counter = dynamic(() => import("@/components/counter/counter"));
+const Words3D = dynamic(() => import("@/components/words-3d/words-3d"));
+const Letter = dynamic(() => import("@/components/letter/letter"));
+const Footer = dynamic(() => import("@/components/footer/footer"));
 
 export default function Home() {
   return (

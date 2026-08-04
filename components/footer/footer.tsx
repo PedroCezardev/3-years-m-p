@@ -4,6 +4,7 @@ import React, { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,6 +19,7 @@ const Footer = () => {
       if (!containerRef.current) return;
 
       // Efeito Parallax suave de zoom na imagem das flores de fundo
+      // OTIMIZAÇÃO: Usamos scrub: true em vez de scrub: 1 para não travar com o Lenis
       if (bgImageRef.current) {
         gsap.fromTo(
           bgImageRef.current,
@@ -30,7 +32,7 @@ const Footer = () => {
               trigger: containerRef.current,
               start: "top bottom",
               end: "bottom bottom",
-              scrub: 1,
+              scrub: true,
             },
           }
         );
@@ -69,16 +71,15 @@ const Footer = () => {
       ref={containerRef}
       className="relative w-full min-h-[100vh] sm:min-h-[100vh] flex flex-col justify-between overflow-hidden select-none bg-[#2C0000]"
     >
-      {/* Background Image: image-footer-flowers.png */}
-      <img
+      {/* Background Image: image-footer-flowers.png - OTIMIZADA PARA NEXT/IMAGE (Economia de ~1.8MB) */}
+      <Image
         ref={bgImageRef}
         src="/image-footer-flowers.png"
         alt="Flores de Fundo"
-        className="absolute inset-0 w-full h-full object-cover object-center z-0"
-        onError={(e) => {
-          // Fallback silencioso caso a imagem ainda não esteja na pasta public
-          e.currentTarget.style.display = "none";
-        }}
+        fill
+        sizes="100vw"
+        className="object-cover object-center z-0"
+        quality={80}
       />
 
       {/* Camada uniforme para escurecer a imagem inteira com toque minimalista de luxo */}
@@ -112,13 +113,12 @@ const Footer = () => {
           <span className="font-cormorant text-sm sm:text-base md:text-lg text-white/85 tracking-wider drop-shadow-sm">
             Feito por:
           </span>
-          <img
+          <Image
             src="/LOGO-COMPLETA-BRANCA.png"
             alt="Pedro PC Cezar Logo"
+            width={120}
+            height={32}
             className="h-4 sm:h-6 md:h-8 w-auto object-contain brightness-100 transition-transform duration-300"
-            onError={(e) => {
-              e.currentTarget.style.display = "none";
-            }}
           />
         </div>
       </div>

@@ -68,12 +68,13 @@ const Preloader = () => {
         },
       });
 
-      // Pausa rápida de contemplação com o coração 100% cheio, mantendo a borda cinza fina e minimalista
+      // Pausa rápida de contemplação com o coração 100% cheio, aumentando o brilho via Opacity/Scale (GPU accelerated)
       tl.to(
         ".heart-glow-contour",
         {
-          stroke: "rgba(255, 255, 255, 0.35)",
-          strokeWidth: 1.2,
+          opacity: 1,
+          scale: 1.03,
+          transformOrigin: "center center",
           duration: 0.4,
         },
         "-=0.2"
@@ -186,13 +187,14 @@ const Preloader = () => {
               </g>
             </g>
 
-            {/* Contorno Brilhante do Coração minimalista cinza/suave fina */}
+            {/* Contorno Brilhante do Coração (Otimizado para GPU com Opacity) */}
             <path
               className="heart-glow-contour transition-all duration-300"
               d="M60 106.75l-7.25-6.6C27 70.8 10 55.4 10 36.5 10 21.1 22.1 9 37.5 9c8.7 0 17.05 4.05 22.5 10.45C65.45 13.05 73.8 9 82.5 9 97.9 9 110 21.1 110 36.5c0 18.9-17 34.3-42.75 63.7L60 106.75z"
               fill="none"
-              stroke="rgba(255, 255, 255, 0.2)"
+              stroke="rgba(255, 255, 255, 0.35)"
               strokeWidth="1.2"
+              opacity="0.6"
             />
           </svg>
 
