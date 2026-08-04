@@ -131,14 +131,14 @@ const Gallery = () => {
             <div 
               className="gallery-card w-[80%] aspect-[16/9] sm:aspect-[21/9] min-h-[350px] sm:min-h-[500px] bg-white/[0.06] backdrop-blur-sm rounded-3xl border border-white/15 overflow-hidden relative shadow-2xl group transition-colors duration-500 hover:border-white/30"
             >
-              {/* Imagem do casal otimizada */}
+              {/* Imagem do casal otimizada - Tamanho exato requisitado pelo Lighthouse */}
               <Image
                 src={item.src}
                 alt={item.alt}
                 fill
-                sizes="100vw"
+                sizes="(max-width: 1280px) 100vw, 1280px"
                 className="gallery-img object-cover object-center transition-transform duration-700 group-hover:scale-[1.03]"
-                quality={85}
+                quality={75}
               />
             </div>
           </div>

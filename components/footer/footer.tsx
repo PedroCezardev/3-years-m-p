@@ -71,7 +71,7 @@ const Footer = () => {
       ref={containerRef}
       className="relative w-full min-h-[100vh] sm:min-h-[100vh] flex flex-col justify-between overflow-hidden select-none bg-[#2C0000]"
     >
-      {/* Background Image: image-footer-flowers.png - OTIMIZADA PARA NEXT/IMAGE (Economia de ~1.8MB) */}
+      {/* Background Image: image-footer-flowers.png - OTIMIZADA PARA NEXT/IMAGE (Qualidade Máxima Restaurada) */}
       <Image
         ref={bgImageRef}
         src="/image-footer-flowers.png"
@@ -79,7 +79,7 @@ const Footer = () => {
         fill
         sizes="100vw"
         className="object-cover object-center z-0"
-        quality={80}
+        quality={100} 
       />
 
       {/* Camada uniforme para escurecer a imagem inteira com toque minimalista de luxo */}
@@ -118,6 +118,8 @@ const Footer = () => {
             alt="Pedro PC Cezar Logo"
             width={120}
             height={32}
+            unoptimized={true}
+            quality={100}
             className="h-4 sm:h-6 md:h-8 w-auto object-contain brightness-100 transition-transform duration-300"
           />
         </div>
