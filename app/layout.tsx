@@ -52,9 +52,9 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${cormorant.variable} ${parisienne.variable} h-full antialiased overflow-x-hidden w-full max-w-full`}
+      className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${cormorant.variable} ${parisienne.variable} antialiased overflow-x-hidden w-full max-w-full`}
     >
-      <body className="min-h-full flex flex-col overflow-x-hidden w-full max-w-full">
+      <body className="flex flex-col overflow-x-hidden w-full max-w-full bg-[#2C0000]">
         <CustomScrollbar />
         <SmoothScroll>{children}</SmoothScroll>
       </body>

@@ -33,9 +33,28 @@ export default function SmoothScroll({
     gsap.ticker.add(tickerCallback);
     gsap.ticker.lagSmoothing(0);
 
+    // CORREÇÃO DO BUG DO FOOTER (Scroll preso na metade):
+    // Se vídeos, imagens ou modelos 3D carregarem após a inicialização inicial, o tamanho
+    // da página muda, mas o GSAP e o Lenis podem ficar com o tamanho antigo salvo.
+    // Usamos um ResizeObserver para detectar mudanças de tamanho e forçar o ScrollTrigger a recalcular.
+    const resizeObserver = new ResizeObserver(() => {
+      ScrollTrigger.refresh();
+    });
+    
+    // Observa o documento inteiro
+    resizeObserver.observe(document.body);
+
+    // Forçamos uma ou duas atualizações após o carregamento inicial para garantir
+    // que qualquer "salto" de tamanho provocado pelo GSAP pinning seja recalculado
+    const timeout1 = setTimeout(() => ScrollTrigger.refresh(), 500);
+    const timeout2 = setTimeout(() => ScrollTrigger.refresh(), 2000);
+
     return () => {
       lenis.destroy();
       gsap.ticker.remove(tickerCallback);
+      resizeObserver.disconnect();
+      clearTimeout(timeout1);
+      clearTimeout(timeout2);
     };
   }, []);
 
